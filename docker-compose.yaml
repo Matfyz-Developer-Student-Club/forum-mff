@@ -1,0 +1,27 @@
+version: "3.3"
+   
+volumes: 
+  pgdata:
+  
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      
+
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+
+  web:
+    build: .
+    volumes:
+      - ./:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
