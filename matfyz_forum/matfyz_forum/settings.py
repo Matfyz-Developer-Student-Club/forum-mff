@@ -39,8 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'posts.apps.PostsConfig',
-    'user_profile.apps.UserProfileConfig',
-    'users.apps.UsersConfig',
+    'user_profile.apps.UserProfileConfig'
 ]
 
 MIDDLEWARE = [
@@ -96,7 +95,7 @@ DATABASES = {
 
 
 # TODO once database design is finised we will have to design a user Model as first migration
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'user_profile.User'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
