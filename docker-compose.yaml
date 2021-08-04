@@ -1,27 +1,28 @@
-version: "3.3"
-   
-volumes: 
-  pgdata:
-  
+version: "3.8"
 
 services:
   db:
-    image: postgres
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      
+    image: postgres:13-alpine
+    env_file:
+      ./docker_config/.env.testing
+    ports:
+      - "5432:5432"
 
     volumes:
       - pgdata:/var/lib/postgresql/data
 
-
   web:
-    build: .
+    build: 
+      context: .
+    image: django-webapp
+    command: run
     volumes:
       - ./:/app
     ports:
       - "8000:8000"
     depends_on:
       - db
+   
+volumes: 
+  pgdata:
+  
