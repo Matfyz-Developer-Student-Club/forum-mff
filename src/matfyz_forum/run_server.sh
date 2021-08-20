@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -eo pipefail
-MANAGE="./matfyz_forum/manage.py"
+MANAGE="./manage.py"
 
 run_server() {
     python3 "$MANAGE" makemigrations
@@ -12,6 +12,7 @@ run_server() {
     python3 "$MANAGE" runserver 0.0.0.0:8000
 }
 
+# Default options is run_server
 if [[ -z "$1" ]]; then
     run_server
     exit 0
@@ -23,6 +24,7 @@ case "$1" in
         exit 0
         ;;
 
+    # Allow managing the django instance
     manage)
         shift
         python3 "$MANAGE" "$@" 

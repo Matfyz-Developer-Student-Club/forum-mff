@@ -4,7 +4,7 @@ services:
   db:
     image: postgres:13-alpine
     env_file:
-      ./docker_config/.env.testing
+      ./docker_config/testing.env
     ports:
       - "5432:5432"
 
@@ -13,16 +13,18 @@ services:
 
   web:
     build: 
-      context: .
+      context: ./src/matfyz_forum
     image: django-webapp
     command: run
     volumes:
       - ./:/app
     ports:
       - "8000:8000"
+    # Afaik we cannot set the env file on every container so thus duplicity
+    env_file:
+      ./docker_config/testing.env
     depends_on:
       - db
    
 volumes: 
   pgdata:
-  
