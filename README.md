@@ -6,5 +6,4 @@ RUN project: `docker-compose up` \
 Please note that after editing you should always rebuild image before running. \
 REBUILD project: `docker-compose build` \
 STOP project: `docker-compose stop` \
-so that changes propagate
 RUN manage.py: `docker-compose run web manage YOUR_COMMANDS`
